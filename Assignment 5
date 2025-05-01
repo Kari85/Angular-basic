@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-toggle-button-page',
+  templateUrl: './toggle-button-page.component.html',
+  styleUrls: ['./toggle-button-page.component.css']
+})
+export class ToggleButtonPageComponent {
+  buttonColor: string = 'blue'; // Initial button color
+  isColorOn: boolean = true;
+
+  toggleColor() {
+    this.isColorOn = !this.isColorOn;
+    this.buttonColor = this.isColorOn ? 'blue' : 'red';
+  }
+}
