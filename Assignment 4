@@ -1,0 +1,38 @@
+import { Component, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-yesterday-weather',
+  templateUrl: './yesterday-weather.component.html',
+  styleUrls: ['./yesterday-weather.component.css']
+})
+export class YesterdayWeatherComponent implements OnInit {
+  @Input() data: string = '';
+  yesterdayWeatherData: any; // To hold the fetched weather data
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.fetchYesterdayWeatherData();
+  }
+
+  // Placeholder function to simulate fetching yesterday's weather data
+  fetchYesterdayWeatherData(): void {
+    // In a real application, you would make an API call here.
+    // For this example, we'll just create some sample data.
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const formattedDate = yesterday.toLocaleDateString();
+
+    this.yesterdayWeatherData = {
+      date: formattedDate,
+      temperature: '15°C',
+      conditions: 'Mostly Sunny',
+      humidity: '75%',
+      windSpeed: '12 km/h'
+    };
+
+    // After fetching (or in this case, creating) the data,
+    // we format it into a string that the @Input 'data' can receive.
+    this.data = `Yesterday's Weather (${this.yesterdayWeatherData.date}): Temperature: ${this.yesterdayWeatherData.temperature}, Conditions: ${this.yesterdayWeatherData.conditions}, Humidity: ${this.yesterdayWeatherData.humidity}, Wind Speed: ${this.yesterdayWeatherData.windSpeed}`;
+  }
+}
